@@ -62,18 +62,18 @@ body {
   color: var(--light-second);
 }
 
-.calendar-days {
+#calendar-days {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   gap: 2px;
   color: var(--light-text);
 }
-.calendar-days li {
+#calendar-days li {
   list-style: none;
   text-align: center;
   padding: 10px;
 }
-.calendar-days li:hover {
+#calendar-days li:hover {
   background-color: var(--light-hover);
   border-radius: 8px;
 }

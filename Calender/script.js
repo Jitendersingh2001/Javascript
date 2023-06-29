@@ -1,6 +1,5 @@
 "use strict";
 //variable declaration
-
 let month = document.getElementById("month");
 let Year = document.getElementById("year");
 let nextmonth = document.getElementById("next-month");
@@ -10,6 +9,34 @@ let prevyear = document.getElementById("prev-year");
 let date = new Date();
 let current_month = date.getMonth();
 let current_year = date.getFullYear();
+let first_day = new Date(year, month, 1);
+let calender = document.getElementById("calender-days");
+//leap year
+const isLeapYear = (year) => {
+  return (
+    (year % 4 === 0 && year % 100 !== 0 && year % 400 !== 0) ||
+    (year % 100 === 0 && year % 400 === 0)
+  );
+};
+//Feb days
+const getFebDays = (year) => {
+  return isLeapYear(year) ? 29 : 28;
+};
+// Days of Months
+let days_of_month = [
+  31,
+  getFebDays(Year),
+  31,
+  30,
+  31,
+  30,
+  31,
+  31,
+  30,
+  31,
+  30,
+  31,
+];
 
 //Month Name
 const month_name = [
@@ -52,3 +79,4 @@ prevyear.addEventListener("click", () => {
 });
 
 //calender days
+for (let i = 1; i <= days_of_month[current_month]; i++) {}
