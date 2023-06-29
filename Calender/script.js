@@ -51,4 +51,4 @@ prevyear.addEventListener("click", () => {
   Year.innerText = current_year;
 });
 
-//generate calender
+//calender days
