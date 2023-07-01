@@ -9,8 +9,10 @@ let prevyear = document.getElementById("prev-year");
 let date = new Date();
 let current_month = date.getMonth();
 let current_year = date.getFullYear();
-let first_day = new Date(year, month, 1);
-let calender = document.getElementById("calender-days");
+let first_day = new Date(Year, month, 1);
+let calenderdays = document.getElementById("calendar-days");
+let currentWeekday, firstDayOfMonth;
+
 //leap year
 const isLeapYear = (year) => {
   return (
@@ -56,14 +58,24 @@ const month_name = [
 
 //MONTH SECTION
 month.innerText = month_name[current_month].toUpperCase();
-//month buttons
 nextmonth.addEventListener("click", () => {
-  current_month = current_month + 1;
+  current_month = (current_month + 1) % 12;
+  if (current_month === 0) {
+    current_year++;
+    Year.innerText = current_year;
+  }
   month.innerText = month_name[current_month].toUpperCase();
+  generatecalender(current_month, current_year);
 });
+
 prevmonth.addEventListener("click", () => {
-  current_month = current_month - 1;
+  current_month = (current_month - 1 + 12) % 12;
+  if (current_month === 11) {
+    current_year--;
+    Year.innerText = current_year;
+  }
   month.innerText = month_name[current_month].toUpperCase();
+  generatecalender(current_month, current_year);
 });
 
 //YEAR SECTION
@@ -72,11 +84,27 @@ Year.innerText = current_year;
 nextyear.addEventListener("click", () => {
   current_year = current_year + 1;
   Year.innerText = current_year;
+  generatecalender(current_month, current_year);
 });
 prevyear.addEventListener("click", () => {
   current_year = current_year - 1;
   Year.innerText = current_year;
+  generatecalender(current_month, current_year);
 });
 
 //calender days
-for (let i = 1; i <= days_of_month[current_month]; i++) {}
+
+function generatecalender(current_month, current_year) {
+  calenderdays.innerHTML = "";
+  firstDayOfMonth = new Date(current_year, current_month, 1);
+  currentWeekday = firstDayOfMonth.getDay();
+  for (let i = 0; i < currentWeekday; i++) {
+    // calenderdays.appendChild(document.createElement("li"));
+    calenderdays.insertAdjacentHTML("beforeend", `<li></li>`);
+  }
+  for (let i = 1; i <= days_of_month[current_month]; i++) {
+    calenderdays.insertAdjacentHTML("beforeend", `<li>${i}</li>`);
+  }
+}
+
+generatecalender(current_month, current_year);
