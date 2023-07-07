@@ -84,7 +84,7 @@ body {
   font-size: 15px;
   font-weight: 400;
 }
-.task button {
+.bottons button {
   background-color: #8052ec;
   color: #ffffff;
   height: 100%;
@@ -93,4 +93,12 @@ body {
   border: none;
   cursor: pointer;
   outline: none;
+  padding: 10px;
+  margin: 5px;
+}
+.bottons button:hover {
+  background-color: #5e31c8;
+}
+#push:hover {
+  background-color: #5e31c8;
 }
